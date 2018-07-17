@@ -1,0 +1,37 @@
+<!--meterRegulator.wxml-->
+<view class='container'>
+  <view class="userinfo-estimate">
+    <view class='estimate-view-text'>
+      <text>设备电量：57%</text>
+      <view class='view-image-setting'>
+        <image  bindtap="systemSetting" mode="{{item.mode}}" src='{{settingImg}}'></image>
+      </view>
+    </view>
+
+    <view class="userinfo-estimate-input">
+      <view class="estimate-input-view">
+        <input focus="" id='input-estimate-value' placeholder='请点击称重' placeholder-class="placeholder" disabled  bindblur='weigthInput' value='{{weight}}'/>
+        <text>kg</text>
+      </view>
+
+      <view class="estimate-input-view">
+        <input type='digit' placeholder='请输入每公斤的价格' placeholder-class="placeholder" bindinput='watchValues'/>
+        <text>￥/kg</text>
+      </view>
+     
+      <view class='estimate-input-view'>
+        <input type='text'  style="color:#21AB60" disabled value='{{total}}' placeholder='请点击计价' placeholder-class="placeholder"/>
+        <text>￥</text>
+      </view>
+    </view>
+    <view class="estimate-buttom">
+      <button bindtap="weighing">称重</button>
+      <button bindtap="valuing">计价</button>
+    </view>
+  </view>
+
+  <view class="business-companion">
+    <view><text class="business-companion-text">华示（深圳）技术有限公司</text></view>
+    <view><text class="business-companion-text">ShenZhen HuaShi Tech Co.，Ltd</text></view>
+  </view>
+</view>

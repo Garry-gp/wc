@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/configure/configure",
+    "pages/meterRegulator/meterRegulator",
+    "pages/user/user"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#21AB60",
+    "navigationBarTitleText": "WeScale"
+  }
+}

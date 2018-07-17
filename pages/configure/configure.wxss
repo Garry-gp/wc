@@ -1,0 +1,61 @@
+.configure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+}
+
+.row-wrap {
+        display: flex;
+        font-size: 20px;
+        background-color: #ddd;
+        width: 80%;
+        height: 40px;
+        align-items: center;
+        border-radius: 9px;
+        margin: 10px;
+}
+
+.label {
+        margin: 8px;
+        width: 100%;
+}
+
+.action-text {
+        height: 10px;
+}
+
+.item {
+        display: flex;
+        margin: 5px;
+}
+
+.section {
+        font-size: 28rpx;
+        display: flex;
+        background-color: #ddd;
+        width: 90%;
+        height: 40px;
+        align-items: center;
+        border-radius: 9px;
+        margin: 5px;
+}
+
+.row-text-msg {
+        margin: 5px;
+        width: 80%;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        font-size: 19px;
+        line-height: 23px;
+}
+
+.section-text {
+        width: 80%;
+        margin: 5px;
+}
+
+.section-button button {
+        color: #21AB60;
+        margin-top: 10rpx;
+
+}

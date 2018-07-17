@@ -1,0 +1,88 @@
+/**meterRegulator.wxss**/
+.container{
+  padding: 0px;
+  margin: 0px;
+}
+.userinfo-estimate{
+  width: 100%;
+  margin: 5px 0;
+}
+.estimate-view-text{
+  padding: 0px;
+  margin: 5px;
+  display: flex;
+}
+
+.view-image-setting {
+  position: fixed;
+  right: 10px;
+}
+.view-image-setting image{
+  width: 30px;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.userinfo-estimate-input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12%
+}
+
+.userinfo-estimate-input view{
+  display: flex;
+}
+
+.estimate-input-view{
+  width: 240px;
+  padding:5px;
+  display: flex;
+  align-items: center;
+  padding-left:80px;
+}
+.estimate-input-view input{
+  height: 60px;
+  width: 150px;
+  font-size: 40px;
+  background-color: #dddddd;
+  border-radius:10px;
+  align-items: center;
+  margin: 0px;
+  padding: 4px;
+  text-align: right
+}
+
+.estimate-input-view text{
+  font-size: 30px;
+  padding-left:5px;
+}
+
+.estimate-buttom{
+  display:flex; 
+  padding: 10px; 
+}
+.estimate-buttom button{
+ font-size: 25px;
+ font-weight: 200px;
+ font-family:Verdana, Geneva, sans-serif;
+ color: #21AB60;
+ height: 65px;
+ width:120px; 
+ border-radius:12px;
+ border-style:solid;
+ border-width:1px;
+ border-color:#21AB60;
+ }
+.input_estimate button{
+  margin-top: 10px;
+}
+
+.message-text{
+  font-size: 16px;
+  color: red;
+}
+
+.placeholder {
+  font-size:16px;
+}

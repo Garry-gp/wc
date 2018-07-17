@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+      <image bindload="imageLoad" style="width:{{imgwidth}}rpx; height:{{imgheight }}rpx;" bindtap="toWeigh" src="{{logo}}"></image>
+  </view>
+  <view class="business-companion">
+    <view><text class="business-companion-text">华示（深圳）技术有限公司</text></view>
+    <view><text class="business-companion-text">ShenZhen HuaShi Tech Co.，Ltd</text></view>
+  </view>
+</view>

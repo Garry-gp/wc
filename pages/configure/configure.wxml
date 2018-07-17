@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<view class="configure">
+        <view class="row-wrap">
+                <view class="label" bindtap="open_BLE">添加/删除设备</view>
+        </view>
+        <view class="row-wrap">
+                <view class="label" bindtap="actionSheetTap">使用说明</view>
+                <action-sheet class='action-text' hidden="{{actionSheetHidden}}" bindchange="actionSheetChange">
+                        <block wx:foritems="{{actionSheetItems}}">
+                                <action-sheet-item class="item" bindtap="bind{{item}}">{{item}}</action-sheet-item>
+                        </block>
+                        <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+                </action-sheet>
+        </view>
+        <view class="row-wrap">
+                <view class="label" bindtap="">版本</view>
+                <view style='margin:5px'>
+                        <text id='version'>{{version}}</text>
+                </view>
+        </view>
+        <view class='row-text-msg'>
+                <text>设备名称:\t{{deviceName==null?"无设备":deviceName}}\n</text>
+                <text>MAC地址:\t{{deviceId==null?"无设备":deviceId}}\n</text>
+        </view> 
+</view>
+
+
+<!-- 设备列表 -->
+<view class="configure">
+        <block wx:for="{{list}}" wx:key="string_temp">
+                <view class="section" style="flex-direction:row">
+                        <view class="section-text">
+                                <text>设备名称:  {{item.name}}\n</text>
+                                <text>MAC地址:   {{item.deviceId}}</text>
+                        </view>
+                        <view class="section-button">
+                                <button id="{{item.deviceId}}" size='mini' bindtap="saverBLEMessage"> 
+                                {{searchingstatus?"已存在":"保存"}} </button>
+                        </view>
+                </view>
+        </block>
+</view>
