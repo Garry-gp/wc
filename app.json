@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/configure/configure",
     "pages/meterRegulator/meterRegulator",
+    "pages/configure/configure",
     "pages/particular/particular",
     "pages/user/user"
   ],

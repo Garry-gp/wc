@@ -1,11 +1,4 @@
 //设置页面
-var items =[
-            '1、点击称重获取当前商品的重量',
-            '2、输入每公斤商品的价格',
-            '3、点击计价，通过程序算出总价格',
-            '4、通过设置，设置添加设备和删除设备',
-            '5、通过操作说明，查阅相关的操作说明'
-            ];
 var deviceItems=[];
 
 var app = getApp(); 
@@ -13,7 +6,7 @@ var temp = []
 var string_temp = ""
 
 var serviceId = "0000ffe0-0000-1000-8000-00805f9b34fb"
-var deviceIdKey = "deviceIdKey"
+var deviceIdKey = "sqqkSbLgXcY+naQ5+izLjQ=="
 var Dec = require('../../public/public.js') //引用封装好的加密解密js
 Page({
         data:{
@@ -36,11 +29,14 @@ Page({
                 try {
                         var value = wx.getStorageSync(deviceIdKey)
                         if (value) {
+                                var array = new Array();
+                                var array = value.split("`");
                                 this.setData({
-                                        characteristicId: value.deviceId,
-                                        temp: value
+                                        deviceName: array[0],
+                                        deviceId: array[1]
 
-                                })  
+                                });  
+                                console.log("kay=" + deviceIdKey + ",data=" + value + ",array=" + this.data.deviceName + "/" + this.data.deviceId);
                         }
                 } catch (e) {
                         wx.showModal({
@@ -49,18 +45,6 @@ Page({
                                 duration: 2000
                         })
                 }  
-        },
-
-        //缓存到本地
-        saverBLEMessage: function (e) {
-                debugger
-                console.log("当前 e.currentTarget.id=" + e.currentTarget.id);
-                console.log("当前 e.currentTarget.name=" + $("deviceName").val());
-                console.log("当前 deviceIdKey=" + deviceIdKey);
-                wx.setStorage({
-                        key: deviceIdKey,
-                        data: "{deviceId:" + e.currentTarget.id + ",name:" + e.currentTarget.name,
-                })
         },
 
         //检查蓝牙的初始化状态
@@ -95,12 +79,27 @@ Page({
                                                 duration: 1000
                                         });
                                         checkBluetooth(that);
-
                                         getBluetoothList(that);
 
                                 }
                         }
                 });
+        },
+
+        //数据缓存到本地
+        saverBLE: function(e){
+                var deviceValue = e.currentTarget.id;
+                var array = new Array();
+                var array = deviceValue.split("`");
+                this.setData({
+                        deviceName: array[0],
+                        deviceId: array[1]
+
+                });
+                wx.setStorage({
+                        key: deviceIdKey,
+                        data: deviceValue,
+                })
         }
 });
 
@@ -120,7 +119,6 @@ function checkBluetooth(that) {
         })
         setTimeout(function () {
                 stopBluetooth(that);
-                // getBluetoothList(that);
         }, 6000)
 };
 

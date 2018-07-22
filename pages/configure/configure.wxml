@@ -1,18 +1,18 @@
 <!--index.wxml-->
 <view class="confgure-main">
         <view class='row-text-msg'>
-                <text>设备名称:\t{{deviceName==null?"无设备":deviceName}}\n</text>
+                <text>设备名称:\t\t{{deviceName==null?"暂无设备":deviceName}}\n</text>
         </view> 
 </view>
 <view class="configure">
-        <view class="row-wrap">
-                <view class="label" bindtap="open_BLE">添加/删除设备</view>
+        <view class="row-wrap" bindtap="open_BLE">
+                <view class="label">添加/删除设备</view>
                 <view style='margin:10px'>
                         <text id='version'>></text>
                 </view>
         </view>
         <view class="row-wrap">
-                <navigator class='label' url='../particular/particular'>使用说明</navigator>
+                <navigator class='label' url='../particular/particular'>使用说明 </navigator>
                 <view style='margin:10px'>
                         <text id='version'>></text>
                 </view>
@@ -29,15 +29,15 @@
 
 <!-- 设备列表 -->
 <view class="configure">
-        <block wx:for="{{list}}" wx:key="string_temp">
+       <block wx:for="{{list}}" wx:key="string_temp">
                 <view class="section" style="flex-direction:row">
                         <view class="section-text">
                                 <text>设备名称:  {{item.name}}\n</text>
                                 <text>MAC地址:   {{item.deviceId}}</text>
                         </view>
                         <view class="section-button">
-                                <button id="{{item.deviceId}}" size='mini' bindtap="saverBLEMessage"> 
-                                {{searchingstatus?"已存在":"保存"}} </button>
+                                <button id="{{item.name}}`{{item.deviceId}}" size='mini' bindtap="saverBLE"> 
+                                {{searchingstatus?"保存":""}} </button>
                         </view>
                 </view>
         </block>
