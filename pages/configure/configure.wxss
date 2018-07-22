@@ -1,3 +1,16 @@
+.confgure-main{
+        margin: 1px;
+}
+
+.row-text-msg {
+        margin: 10px;
+        padding: 4px;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        font-size: 19px;
+        line-height: 23px;
+        border-bottom:1rpx solid #ededed;
+}
+
 .configure {
         display: flex;
         flex-direction: column;
@@ -42,13 +55,7 @@
         margin: 5px;
 }
 
-.row-text-msg {
-        margin: 5px;
-        width: 80%;
-        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-        font-size: 19px;
-        line-height: 23px;
-}
+
 
 .section-text {
         width: 80%;

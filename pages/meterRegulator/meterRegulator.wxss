@@ -8,9 +8,10 @@
   margin: 5px 0;
 }
 .estimate-view-text{
-  padding: 0px;
+  padding: 5px;
   margin: 5px;
   display: flex;
+  border-bottom:1rpx solid #ededed;
 }
 
 .view-image-setting {

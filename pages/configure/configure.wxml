@@ -1,7 +1,15 @@
 <!--index.wxml-->
+<view class="confgure-main">
+        <view class='row-text-msg'>
+                <text>设备名称:\t{{deviceName==null?"无设备":deviceName}}\n</text>
+        </view> 
+</view>
 <view class="configure">
         <view class="row-wrap">
                 <view class="label" bindtap="open_BLE">添加/删除设备</view>
+                <view style='margin:10px'>
+                        <text id='version'>></text>
+                </view>
         </view>
         <view class="row-wrap">
                 <navigator class='label' url='../particular/particular'>使用说明</navigator>
@@ -15,9 +23,7 @@
                         <text id='version'>{{version}}</text>
                 </view>
         </view>
-        <view class='row-text-msg'>
-                <text>设备名称:\t{{deviceName==null?"无设备":deviceName}}\n</text>
-        </view> 
+        
 </view>
 
 
