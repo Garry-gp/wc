@@ -18,7 +18,6 @@ var Dec = require('../../public/public.js') //引用封装好的加密解密js
 Page({
         data:{
                 actionSheetHidden: true,
-                actionSheetItems: items ,
                 version: "1.02",
                 deviceName: null,
                 deviceId: null,
@@ -61,18 +60,6 @@ Page({
                 wx.setStorage({
                         key: deviceIdKey,
                         data: "{deviceId:" + e.currentTarget.id + ",name:" + e.currentTarget.name,
-                })
-        },
-
-        //使用说明书
-        actionSheetTap: function (e) {
-                this.setData({
-                        actionSheetHidden: !this.data.actionSheetHidden
-                })
-        },
-        actionSheetChange: function (e) {
-                        this.setData({
-                        actionSheetHidden: !this.data.actionSheetHidden
                 })
         },
 

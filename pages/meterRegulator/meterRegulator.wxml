@@ -4,7 +4,9 @@
     <view class='estimate-view-text'>
       <text>设备电量：57%</text>
       <view class='view-image-setting'>
-        <image  bindtap="systemSetting" mode="{{item.mode}}" src='{{settingImg}}'></image>
+        <navigator url='../configure/configure' class='navigator-img'>
+                <image src='{{settingImg}}'></image>
+        </navigator>
       </view>
     </view>
 

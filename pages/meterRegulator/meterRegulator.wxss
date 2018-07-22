@@ -23,6 +23,10 @@
   margin: 5px 0;
 }
 
+.navigator-img{
+ background: #F8F8FF;
+}
+
 .userinfo-estimate-input{
   display: flex;
   flex-direction: column;

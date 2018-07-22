@@ -4,23 +4,19 @@
                 <view class="label" bindtap="open_BLE">添加/删除设备</view>
         </view>
         <view class="row-wrap">
-                <view class="label" bindtap="actionSheetTap">使用说明</view>
-                <action-sheet class='action-text' hidden="{{actionSheetHidden}}" bindchange="actionSheetChange">
-                        <block wx:foritems="{{actionSheetItems}}">
-                                <action-sheet-item class="item" bindtap="bind{{item}}">{{item}}</action-sheet-item>
-                        </block>
-                        <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
-                </action-sheet>
+                <navigator class='label' url='../particular/particular'>使用说明</navigator>
+                <view style='margin:10px'>
+                        <text id='version'>></text>
+                </view>
         </view>
         <view class="row-wrap">
                 <view class="label" bindtap="">版本</view>
-                <view style='margin:5px'>
+                <view style='margin:6px'>
                         <text id='version'>{{version}}</text>
                 </view>
         </view>
         <view class='row-text-msg'>
                 <text>设备名称:\t{{deviceName==null?"无设备":deviceName}}\n</text>
-                <text>MAC地址:\t{{deviceId==null?"无设备":deviceId}}\n</text>
         </view> 
 </view>
 

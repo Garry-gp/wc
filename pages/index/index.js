@@ -17,7 +17,7 @@ Page({
   },
   onLoad: function () {
     var _this = this;
-    console.log("解密=" + Dec.Decrypt("6EA2029C9BE6B080CF0D56DDD7338A6A"));
+//     console.log("解密=" + Dec.Decrypt("6EA2029C9BE6B080CF0D56DDD7338A6A"));
     
     wx.getSystemInfo({
       success: function (res) {

@@ -19,6 +19,7 @@
 .label {
         margin: 8px;
         width: 100%;
+        background: #ddd;
 }
 
 .action-text {
