@@ -11,8 +11,8 @@
                         <text id='version'>></text>
                 </view>
         </view>
-        <view class="row-wrap">
-                <navigator class='label' url='../particular/particular'>使用说明 </navigator>
+        <view class="row-wrap" bindtap="detailedInformation">
+                <view class='label'>使用说明 </view>
                 <view style='margin:10px'>
                         <text id='version'>></text>
                 </view>

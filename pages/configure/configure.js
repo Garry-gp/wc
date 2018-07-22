@@ -36,7 +36,6 @@ Page({
                                         deviceId: array[1]
 
                                 });  
-                                console.log("kay=" + deviceIdKey + ",data=" + value + ",array=" + this.data.deviceName + "/" + this.data.deviceId);
                         }
                 } catch (e) {
                         wx.showModal({
@@ -99,6 +98,12 @@ Page({
                 wx.setStorage({
                         key: deviceIdKey,
                         data: deviceValue,
+                })
+        },
+
+        detailedInformation: function(){
+                wx.navigateTo({
+                        url: '../particular/particular'
                 })
         }
 });
