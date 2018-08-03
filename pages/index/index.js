@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var Dec = require('../../public/public.js')
 Page({
   data: {
     userInfo: {   
@@ -17,8 +16,6 @@ Page({
   },
   onLoad: function () {
     var _this = this;
-//     console.log("解密=" + Dec.Decrypt("6EA2029C9BE6B080CF0D56DDD7338A6A"));
-    
     wx.getSystemInfo({
       success: function (res) {
         _this.setData({

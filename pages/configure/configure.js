@@ -52,6 +52,7 @@ Page({
                 //开启蓝牙模块并初始化
                 wx.openBluetoothAdapter({
                         success: function (res) {
+                                console.log('蓝牙初始化适配器，获取成功'+res);
                         },
                         fail: function (res) {
                                 wx.showModal({
@@ -161,28 +162,4 @@ function getBluetoothList(that) {
                         }
                 })
         }, 1000)
-}
-
-// ArrayBuffer转16进制字符串示例
-function ab2hex(buffer) {
-        var hexArr = Array.prototype.map.call(
-                new Uint8Array(buffer),
-                function (bit) {
-                        return ('00' + bit.toString(16)).slice(-2)
-                }
-        )
-        return hexArr.join('');
-}
-// 16进制数转ASCLL码
-function hexCharCodeToStr(hexCharCodeStr) {
-        var trimedStr = hexCharCodeStr.trim();
-        var rawStr = trimedStr.substr(0, 2).toLowerCase() === "0x" ? trimedStr.substr(2) : trimedStr;
-        var len = rawStr.length;
-        var curCharCode;
-        var resultStr = [];
-        for (var i = 0; i < len; i = i + 2) {
-                curCharCode = parseInt(rawStr.substr(i, 2), 16);
-                resultStr.push(String.fromCharCode(curCharCode));
-        }
-        return resultStr.join("");
 }
