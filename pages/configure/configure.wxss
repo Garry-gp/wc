@@ -62,8 +62,15 @@
         margin: 5px;
 }
 
+.section-button {
+        margin-right:3px; 
+        margin-left:auto;
+}
 .section-button button {
         color: #21AB60;
-        margin-top: 10rpx;
-
+        width: 60px;
+        height: 30px;
+        font-size: 11px;
 }
+
+

@@ -42,3 +42,4 @@ function hexCharCodeToStr(hexCharCodeStr) {
         }
         return resultStr.join("");
 }
+

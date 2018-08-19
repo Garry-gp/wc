@@ -4,10 +4,7 @@ var deviceItems=[];
 var app = getApp(); 
 var temp = []
 var string_temp = ""
-
-var serviceId = "0000ffe0-0000-1000-8000-00805f9b34fb"
 var deviceIdKey = "sqqkSbLgXcY+naQ5+izLjQ=="
-var Dec = require('../../public/public.js') //引用封装好的加密解密js
 Page({
         data:{
                 actionSheetHidden: true,
@@ -15,12 +12,12 @@ Page({
                 deviceName: null,
                 deviceId: null,
 
-                //测试蓝牙
-                searchingstatus: false,
+                searchingstatus: true,
                 id_text: string_temp,
                 list: [],
                 deviceStatus:false,
-                receive_data: 'none'
+                receive_data: 'none',
+                cfgHidden: true,
         },
 
         onLoad:function(){
@@ -39,7 +36,7 @@ Page({
                         }
                 } catch (e) {
                         wx.showModal({
-                                title: '请选择连接的设备',
+                                title: '暂无设备',
                                 icon: 'loading',
                                 duration: 2000
                         })
@@ -49,12 +46,18 @@ Page({
         //检查蓝牙的初始化状态
         open_BLE: function () {
                 var that = this;
+                that.setData({
+                        cfgHidden:false
+                });  
                 //开启蓝牙模块并初始化
                 wx.openBluetoothAdapter({
                         success: function (res) {
                                 console.log('蓝牙初始化适配器，获取成功'+res);
                         },
                         fail: function (res) {
+                                that.setData({
+                                        cfgHidden: true
+                                }); 
                                 wx.showModal({
                                         title: '提示',
                                         content: '请检查手机蓝牙是否打开',
@@ -73,14 +76,7 @@ Page({
                                         });
                                 }
                                 else {
-                                        wx.showToast({
-                                                title: '蓝牙初始化成功',
-                                                icon: 'success',
-                                                duration: 1000
-                                        });
                                         checkBluetooth(that);
-                                        getBluetoothList(that);
-
                                 }
                         }
                 });
@@ -113,53 +109,42 @@ Page({
 function checkBluetooth(that) {
         wx.startBluetoothDevicesDiscovery({
                 success: function (res) {
-                        wx.showToast({
-                                title: '开始搜索BLE',
-                                icon: 'loading',
-                                duration: 1000
-                        })
-                        // that.setData({
-                        //         searchingstatus: !that.data.searchingstatus
-                        // })
-                }
-        })
-        setTimeout(function () {
-                stopBluetooth(that);
-        }, 6000)
-};
-
-//停止搜索附近蓝牙设备
-function stopBluetooth(that) {
-        wx.stopBluetoothDevicesDiscovery({
-                success: function (res) {
-                        wx.showToast({
-                                title: '停止搜索BLE',
-                                icon: 'success',
-                                duration: 1000
-                        })
-                        that.setData({
-                                searchingstatus: !that.data.searchingstatus
-                        })
+                        getBluetoothList(that);
                 }
         })
 };
 
 //获取发现的蓝牙设备
 function getBluetoothList(that) {
-        setTimeout(function () {
-                wx.getBluetoothDevices({
-                        success: function (res) {
-                                for (var i = 0; i < 100; i++) {
-                                        if (res.devices[i]) {
-                                                string_temp = string_temp + '\n' + res.devices[i].deviceId
-                                        }
-                                        console.log("devices=" + string_temp)
+        wx.getBluetoothDevices({
+                success: function (res) {
+                        var string_temp=null;
+                        var index = res.devices.length;
+                        for (var i = 0; i < index; i++) {
+                                if (res.devices[i]) {
+                                        string_temp = string_temp + '\n' + res.devices[i].deviceId
                                 }
-                                that.setData({
-                                        id_text: string_temp,
-                                        list: res.devices
-                                })
                         }
-                })
-        }, 1000)
+                        that.setData({
+                                id_text: string_temp,
+                                list: res.devices,
+                        });
+                        that.setData({
+                                cfgHidden: true
+                        });
+                        stopBluetooth(that);
+                }
+        })
 }
+
+//停止搜索附近蓝牙设备
+function stopBluetooth(that) {
+        wx.stopBluetoothDevicesDiscovery({
+                success: function (res) {
+                        that.setData({
+                                searchingstatus: true,
+                        })
+                        console.log("关闭搜索设备！")
+                }
+        })
+};

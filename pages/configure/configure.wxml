@@ -2,9 +2,12 @@
 <view class="confgure-main">
         <view class='row-text-msg'>
                 <text>设备名称:\t\t{{deviceName==null?"暂无设备":deviceName}}\n</text>
-        </view> 
+        </view>
 </view>
 <view class="configure">
+        <loading hidden="{{cfgHidden}}">
+                加载中...
+        </loading>
         <view class="row-wrap" bindtap="open_BLE">
                 <view class="label">添加/删除设备</view>
                 <view style='margin:10px'>
@@ -23,21 +26,21 @@
                         <text id='version'>{{version}}</text>
                 </view>
         </view>
-        
+
 </view>
 
 
 <!-- 设备列表 -->
 <view class="configure">
-       <block wx:for="{{list}}" wx:key="string_temp">
+        <block wx:for="{{list}}" wx:key="string_temp">
                 <view class="section" style="flex-direction:row">
                         <view class="section-text">
                                 <text>设备名称:  {{item.name}}\n</text>
                                 <text>MAC地址:   {{item.deviceId}}</text>
                         </view>
                         <view class="section-button">
-                                <button id="{{item.name}}`{{item.deviceId}}" size='mini' bindtap="saverBLE"> 
-                                {{searchingstatus?"保存":""}} </button>
+                                <button id="{{item.name}}`{{item.deviceId}}" bindtap="saverBLE">
+                                        {{searchingstatus?"保存":""}} </button>
                         </view>
                 </view>
         </block>
