@@ -105,6 +105,7 @@ Page({
         }
 });
 
+
 //开始搜索附近蓝牙设备
 function checkBluetooth(that) {
         wx.startBluetoothDevicesDiscovery({
@@ -122,7 +123,9 @@ function getBluetoothList(that) {
                         var index = res.devices.length;
                         for (var i = 0; i < index; i++) {
                                 if (res.devices[i]) {
-                                        string_temp = string_temp + '\n' + res.devices[i].deviceId
+                                        console.log("UUID:" + res.devices[i].advertisServiceUUIDs);
+                                        console.log("serviceData:" + ab2hex(res.devices[i].advertisData));
+                                        string_temp = string_temp + '\n' + res.devices[i].deviceId;
                                 }
                         }
                         that.setData({
@@ -147,4 +150,17 @@ function stopBluetooth(that) {
                         console.log("关闭搜索设备！")
                 }
         })
+};
+
+/**
+ * ArrayBuffer转16进度字符串
+ */
+function ab2hex(buffer) {
+        var hexArr = Array.prototype.map.call(
+                new Uint8Array(buffer),
+                function (bit) {
+                        return ('00' + bit.toString(16)).slice(-2)
+                }
+        )
+        return hexArr.join('');
 };

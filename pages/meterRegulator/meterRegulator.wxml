@@ -9,8 +9,9 @@
                 </view>
 
                 <view class="userinfo-estimate-input">
-                        <view class="estimate-input-view">
-                                <input focus="" id='input-estimate-value' placeholder='请点击称重' placeholder-class="placeholder" disabled bindblur='weigthInput' value='{{weight}}' />
+                        <view class="estimate-input-view-weight">
+                                <button class="netWeight-class" bindtap="netWeight">标 0</button>
+                                <input focus="" id='input-estimate-value' placeholder='请打开设备' placeholder-class="placeholder" disabled bindblur='weigthInput' value='{{weight}}' />
                                 <text>kg</text>
                         </view>
 
@@ -20,7 +21,7 @@
                         </view>
 
                         <view class='estimate-input-view'>
-                                <input type='text' style="color:#21AB60" disabled value='{{total}}' placeholder='请点击计价' placeholder-class="placeholder" />
+                                <input type='text' style="color:#21AB60" disabled value='{{total}}' placeholder-class="placeholder" />
                                 <text>￥</text>
                         </view>
                 </view>
@@ -28,8 +29,8 @@
                         <loading hidden="{{hidden}}">
                                 加载中...
                         </loading>
-                        <button bindtap="weighing">称重</button>
-                        <button bindtap="valuing">计价</button>
+                        <button bindtap=" keepWeight">保持</button>
+                        <button bindtap="SaveValue">保存</button>
                 </view>
         </view>
 

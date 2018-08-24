@@ -6,13 +6,16 @@ Page({
         data: {
                 weight: '',
                 price: '',
-                total: '',
+                total: '0.00',
                 power:'-- %',
+                tempWeight:'',
+                netWeigth:20,
                 settingImg: "../../image/setting.png",
 
                 deviceName:null,
                 deviceId: null,
                 currentAdvertisData:null,
+                devices:[],
 
                 available:false,
                 isInitSuccess:true,
@@ -24,7 +27,7 @@ Page({
                 console.log("页面初始化");
                 //初始化
                 this.initBluetoothAdapter();
-                getBluethootDevicePower(that);    
+                // getBluethootDevicePower(that);    
         },
 
         getStorageSyncDevice: function(){
@@ -80,7 +83,8 @@ Page({
                                 })
                         }
                 });
-                searchBluetoothDevicesPower(that);
+                // getBluethootDevice(that);
+                // getBluethootDevicePower(that);
         },
 
         /**
@@ -99,37 +103,35 @@ Page({
         },
 
         /**
-         * 计价方法
-         * 计算总价
+         * 去皮
          */
-        valuing: function (e) {
-                var weightValue = this.data.weight;
-                var priceValue = this.data.price;
+        netWeight: function(){
+
+        },
+
+        /**
+         * 保存记录
+         */
+        SaveValue: function () {
+                var that = this;
+                var weightValue = that.data.tempWeight;
+                var priceValue = that.data.price;
+                var netWeigth = that.data.netWeigth;
                 var totalValue = 0;
-                if (weightValue == 0) {
-                        wx.showModal({
-                                title: '提示',
-                                content: '请点击称重',
-                        })
-                } else if (priceValue == 0) {
-                        wx.showModal({
-                                title: '提示',
-                                content: '请输入每公斤产品的价格',
-                        })
-                } else if (weightValue > 0 && priceValue > 0) {
-                        totalValue = weightValue * priceValue;
+                if (weightValue!=''){
+                        var  weight= (weightValue-netWeigth)/1000;
+                        totalValue = weight * priceValue;
                         this.setData({
+                                weight: weight.toFixed(2),
                                 total: totalValue.toFixed(2),
                         });
                 }
         },
 
         /**
-         * 点击称重按钮的，获取蓝牙的广播数据
-         * 调用解密的方法，获取重量
-         * 
+         * 保持当前的数值
          **/
-        weighing: function () {
+        keepWeight: function () {
                 var that = this;
                 this.initBluetoothAdapter();
                 console.log(that.data.hidden);
@@ -137,33 +139,22 @@ Page({
                 if (that.data.isInitSuccess){
                         that.setData({
                                 total: '',
-                                hidden: false
+                                // hidden: false
                         });
-                        //检查蓝牙模块是否初始化成功
-                        wx.getBluetoothAdapterState({
-                                success: function (res) {
-                                        var available = res.available
-                                        if (available) {
-                                                searchBluetoothDevices(that);
-                                        }
-                                        
-                                }
-                        });
+                        searchBluetoothDevices(that);
                 }
         },
         /**
          * 设置图标的页面跳转
          */
         systemSetting: function () {
-                //定时器非空，关闭定时器
-                // if (timer != null) {
-                //         clearInterval(timer);
-                // }
                 wx.navigateTo({
                         url: '../configure/configure'
                 })
         }
 });
+
+//----------------------------------------------------------------
 
 /**
  * 开始搜索附近蓝牙设备
@@ -171,37 +162,14 @@ Page({
 function searchBluetoothDevices(that) {
         wx.startBluetoothDevicesDiscovery({
                 success: function (res) {
-                        getAdertisWeightData(that);
+                        setTimeout(function(){
+                                getAdertisWeightData(that);
+                        },600);
                 }
         })
 };
 
-function searchBluetoothDevicesPower(that) {
-        wx.openBluetoothAdapter({
-                success: function (res) {
-                        //获取本机蓝牙适配器状态
-                        wx.getBluetoothAdapterState({
-                                success: function (res) {
-                                        that.setData({
-                                                available: res.available
-                                        });
-                                }
-                        });
-                },
-                // fail: function (res) {
-                //         //定时器非空，关闭定时器
-                //         if (timer != null) {
-                //                 console.log("关闭定时器")
-                //                 clearInterval(timer);
-                //         }
-                // }
-        });
-        wx.startBluetoothDevicesDiscovery({
-                success: function (res) {
-                        getAdertisPowerData(that);
-                }
-        })
-};
+
 
 /**
  * 获取当前的设备的广播数据
@@ -213,61 +181,66 @@ function getAdertisWeightData(that) {
                         var index = res.devices.length;
                         if(index>0){
                                 for (var i = 0; i < index; i++) {
-                                        console.log("deviceId:" + res.devices[i].deviceId)
                                         if (res.devices[i].deviceId == deviceId) {
                                                 var currentEquipmentData = ab2hex(res.devices[i].advertisData);
                                                 var weightValue = Dec.DecryptWeight(currentEquipmentData);
+                                                var powerValue = Dec.DecryptPower(currentEquipmentData);
+                                                console.log(currentEquipmentData);
                                                 that.setData({
-                                                        weight: weightValue,
-                                                        isExistDevice:true,
+                                                        tempWeight: weightValue,
+                                                        power: powerValue + " %",
                                                 });
-                                                console.log(ab2hex(res.devices[i].advertisData));
                                                 break;
                                         }
                                 }    
-                        }
-                        if (!that.data.isExistDevice){
-                                that.setData({
-                                        weight: '',
-                                });
-                                wx.showModal({
-                                        title: '提示',
-                                        content: '未找到设备',
-                                        duration:1000
-                                })      
-                        }
+                        }                       
+                },
+                complete: function () {
                         stopBluetooth(that);
                 }
         });
 }
 
-function getAdertisPowerData(that) {
-        var deviceId = that.data.deviceId;
-        wx.getBluetoothDevices({
-                success: function (res) {
-                        var index = res.devices.length;
-                        if (index > 0) {
-                                for (var i = 0; i < index; i++) {
-                                        console.log("deviceId:" + res.devices[i].deviceId)
-                                        if (res.devices[i].deviceId == deviceId) {
-                                                var currentEquipmentData = ab2hex(res.devices[i].advertisData);
-                                                var powerValue = Dec.DecryptPower(currentEquipmentData);
-                                                that.setData({
-                                                        power: powerValue + " %",
-                                                });
-                                                console.log(ab2hex(res.devices[i].advertisData));
-                                                break;
-                                        }
-                                }
-                        } else {
-                                that.setData({
-                                        power: "-- %",
-                                });
-                        }
-                        stopBluetooth(that);
-                }
-        });
-}
+
+// function searchBluetoothDevicesPower(that) {
+//         wx.startBluetoothDevicesDiscovery({
+//                 success: function (res) {
+//                         setTimeout(function () {
+//                                 getAdertisPowerData(that);
+//                         },2000);
+//                 }
+//         })
+// };
+
+// function getAdertisPowerData(that) {
+//         var deviceId = that.data.deviceId;
+//         wx.getBluetoothDevices({
+//                 success: function (res) {
+//                         var index = res.devices.length;
+//                         if (index > 0) {
+//                                 for (var i = 0; i < index; i++) {
+//                                         console.log("deviceId:" + res.devices[i].deviceId)
+//                                         if (res.devices[i].deviceId == deviceId) {
+//                                                 var currentEquipmentData = ab2hex(res.devices[i].advertisData);
+//                                                 var powerValue = Dec.DecryptPower(currentEquipmentData);
+//                                                 that.setData({
+//                                                         power: powerValue + " %",
+//                                                 });
+//                                                 console.log(ab2hex(res.devices[i].advertisData));
+//                                                 break;
+//                                         }
+//                                 }
+//                         } else {
+//                                 that.setData({
+//                                         power: "-- %",
+//                                 });
+//                         }
+//                 },
+//                 complete: function () {
+//                         // stopBluetooth(that)
+//                 }
+//         });
+// }
 
 /**
  * 停止搜索附近蓝牙设备
@@ -288,13 +261,24 @@ function stopBluetooth(that) {
  * 定时获取设备的电量
  * 
  */
-function getBluethootDevicePower(that){
+// function getBluethootDevicePower(that){
+//         timer = setInterval(function () {
+//                 console.log("定时器")
+//                 searchBluetoothDevicesPower(that);               
+//         }, 5000) //定时器时间间隔 500ms 
+// }
+
+/**
+ * 定时获取设备的重量
+ * 
+ */
+function getBluethootDevice(that){
         timer = setInterval(function () {
                 console.log("定时器")
-                searchBluetoothDevicesPower(that);               
-        }, 10000) //定时器时间间隔 10s 
+                searchBluetoothDevices(that); 
+                that.valuing();              
+        }, 1000) //定时器时间间隔 1s 
 }
-
 /**
  * ArrayBuffer转16进度字符串
  */
@@ -307,5 +291,3 @@ function ab2hex(buffer) {
         )
         return hexArr.join('');
 };
-
-

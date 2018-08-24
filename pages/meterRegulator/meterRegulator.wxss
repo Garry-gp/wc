@@ -21,7 +21,7 @@
 .view-image-setting image{
   width: 30px;
   height: 30px;
-  margin: 5px 0;
+  margin: 0px 10px;
 }
 
 .navigator-img{
@@ -44,7 +44,39 @@
   padding:5px;
   display: flex;
   align-items: center;
-  padding-left:80px;
+  padding-left:99px; 
+}
+.estimate-input-view-weight{
+  padding:5px;
+  display: flex;
+  align-items: center;
+}
+
+.estimate-input-view-weight input{
+  height: 60px;
+  width: 150px;
+  font-size: 40px;
+  background-color: #dddddd;
+  border-radius:10px;
+  align-items: center;
+  margin: 0px;
+  padding: 4px;
+  text-align: right
+}
+.netWeight-class{
+  width: 50px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding-left:0px;
+  border-color:#21AB60;
+  border-style:solid;
+  border-width:1px;
+  color: #21AB60;
+}
+.estimate-input-view-weight text{
+  font-size: 160%;
+  padding-left:6px;
 }
 .estimate-input-view input{
   height: 60px;
@@ -59,7 +91,7 @@
 }
 
 .estimate-input-view text{
-  font-size: 30px;
+  font-size: 160%;
   padding-left:5px;
 }
 
