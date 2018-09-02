@@ -1,125 +1,220 @@
 /**meterRegulator.wxss**/
-.container{
-  padding: 0px;
-  margin: 0px;
+
+.container {
+        padding: 0px;
+        margin: 0px;
 }
-.userinfo-estimate{
-  width: 100%;
-  margin: 5px 0;
+
+.userinfo-estimate {
+        width: 100%;
+        margin: 5px 0;
 }
-.estimate-view-text{
-  padding: 5px;
-  margin: 5px;
-  display: flex;
-  border-bottom:1rpx solid #ededed;
+
+.estimate-view-text {
+        padding: 5px;
+        margin: 5px;
+        display: flex;
+        border-bottom: 1rpx solid #ededed;
 }
 
 .view-image-setting {
-  position: fixed;
-  right: 10px;
-}
-.view-image-setting image{
-  width: 30px;
-  height: 30px;
-  margin: 0px 10px;
+        position: fixed;
+        right: 10px;
 }
 
-.navigator-img{
- background: #F8F8FF;
+.view-image-setting image {
+        width: 30px;
+        height: 30px;
+        margin: 0px 10px;
 }
 
-.userinfo-estimate-input{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12%
+.navigator-img {
+        background: #f8f8ff;
 }
 
-.userinfo-estimate-input view{
-  display: flex;
+.userinfo-estimate-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12%;
 }
 
-.estimate-input-view{
-  width: 240px;
-  padding:5px;
-  display: flex;
-  align-items: center;
-  padding-left:99px; 
-}
-.estimate-input-view-weight{
-  padding:5px;
-  display: flex;
-  align-items: center;
+.userinfo-estimate-input view {
+        display: flex;
 }
 
-.estimate-input-view-weight input{
-  height: 60px;
-  width: 150px;
-  font-size: 40px;
-  background-color: #dddddd;
-  border-radius:10px;
-  align-items: center;
-  margin: 0px;
-  padding: 4px;
-  text-align: right
-}
-.netWeight-class{
-  width: 50px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  padding-left:0px;
-  border-color:#21AB60;
-  border-style:solid;
-  border-width:1px;
-  color: #21AB60;
-}
-.estimate-input-view-weight text{
-  font-size: 160%;
-  padding-left:6px;
-}
-.estimate-input-view input{
-  height: 60px;
-  width: 150px;
-  font-size: 40px;
-  background-color: #dddddd;
-  border-radius:10px;
-  align-items: center;
-  margin: 0px;
-  padding: 4px;
-  text-align: right
+.estimate-input-view {
+        width: 240px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        padding-left: 99px;
 }
 
-.estimate-input-view text{
-  font-size: 160%;
-  padding-left:5px;
+.estimate-input-view-weight {
+        padding: 5px;
+        display: flex;
+        align-items: center;
 }
 
-.estimate-buttom{
-  display:flex; 
-  padding: 10px; 
-}
-.estimate-buttom button{
- font-size: 25px;
- font-weight: 200px;
- font-family:Verdana, Geneva, sans-serif;
- color: #21AB60;
- height: 65px;
- width:120px; 
- border-radius:12px;
- border-style:solid;
- border-width:1px;
- border-color:#21AB60;
- }
-.input_estimate button{
-  margin-top: 10px;
+.estimate-input-view-weight input {
+        height: 60px;
+        width: 150px;
+        font-size: 40px;
+        background-color: #ddd;
+        border-radius: 10px;
+        align-items: center;
+        margin: 0px;
+        padding: 4px;
+        text-align: right;
 }
 
-.message-text{
-  font-size: 16px;
-  color: red;
+.netWeight-class {
+        width: 50px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding-left: 0px;
+        border-color: #21ab60;
+        border-style: solid;
+        border-width: 1px;
+        color: #21ab60;
+        margin: 2px;
+}
+
+.estimate-input-view-weight text {
+        font-size: 160%;
+        padding-left: 6px;
+}
+
+.estimate-input-view input {
+        height: 60px;
+        width: 150px;
+        font-size: 40px;
+        background-color: #ddd;
+        border-radius: 10px;
+        align-items: center;
+        margin: 0px;
+        padding: 4px;
+        text-align: right;
+}
+
+.estimate-input-view text {
+        font-size: 160%;
+        padding-left: 5px;
+}
+
+.estimate-buttom {
+        display: flex;
+        padding: 10px;
+}
+
+.estimate-buttom button {
+        font-size: 25px;
+        font-weight: 200px;
+        font-family: Verdana, Geneva, sans-serif;
+        color: #21ab60;
+        height: 65px;
+        width: 120px;
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #21ab60;
+}
+
+.input_estimate button {
+        margin-top: 10px;
+}
+
+.message-text {
+        font-size: 16px;
+        color: red;
 }
 
 .placeholder {
-  font-size:16px;
+        font-size: 16px;
+}
+
+/*mask*/
+
+.drawer_screen {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background: #000;
+        opacity: 0.5;
+        overflow: hidden;
+}
+
+/*content*/
+
+.drawer_box {
+        width: 400rpx;
+        overflow: hidden;
+        position: fixed;
+        top: 50%;
+        left: 0;
+        z-index: 1001;
+        background: #fafafa;
+        margin: -150px 50rpx 0 50rpx;
+        border-radius: 3px;
+}
+.title {
+	height: 30px;
+	line-height: 30px;
+	width: 70rpx;
+	text-align: center;
+	display: inline-block;
+	font: 300 28rpx/30px "microsoft yahei";
+}
+.drawer_title {
+        padding: 5px;
+        font: 20px "microsoft yahei";
+        text-align: center;
+}
+
+.drawer_content {
+        overflow-y: scroll; /*超出父盒子高度可滚动*/
+}
+
+.btn_ok {
+        padding: 10px;
+        font: 20px "microsoft yahei";
+        text-align: center;
+        border-top: 1px solid #e8e8ea;
+        color: #3cc51f;
+}
+
+.top {
+        /* padding-top: 8px; */
+}
+
+.input_base {
+        border: 2rpx solid #ccc;
+        padding-left: 10rpx;
+}
+
+.input_h30 {
+        height: 30px;
+        line-height: 30px;
+}
+
+.input_font {
+        font: 12px "microsoft yahei";
+        background: #fff;
+        color: #000;
+}
+
+.grid {
+        display: -webkit-box;
+        display: box;
+        margin: 10px;
+}
+
+.col-1 {
+        -webkit-box-flex: 1;
+        box-flex: 1;
 }

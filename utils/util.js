@@ -14,10 +14,6 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-module.exports = {
-  formatTime: formatTime
-}
-
 
 // ArrayBuffer转16进制字符串示例
 function ab2hex(buffer) {
@@ -43,3 +39,10 @@ function hexCharCodeToStr(hexCharCodeStr) {
         return resultStr.join("");
 }
 
+
+
+module.exports = {
+        formatTime: formatTime,
+        ab2hex: ab2hex,
+        hexCharCodeToStr: hexCharCodeToStr
+}

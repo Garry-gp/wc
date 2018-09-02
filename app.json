@@ -1,10 +1,10 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/meterRegulator/meterRegulator",
+    "pages/index/index",
+    "pages/user/user",
     "pages/configure/configure",
-    "pages/particular/particular",
-    "pages/user/user"
+    "pages/particular/particular"
   ],
   "window":{
     "backgroundTextStyle":"light",

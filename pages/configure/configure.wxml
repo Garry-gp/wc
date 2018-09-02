@@ -14,6 +14,18 @@
                         <text id='version'>></text>
                 </view>
         </view>
+        <view class="row-wrap" bindtap="">
+                <view class="label">查看记录</view>
+                <view style='margin:10px'>
+                        <text id='version'>></text>
+                </view>
+        </view>
+        <view class="row-wrap" bindtap="">
+                <view class="label">重量单位</view>
+                <view style='margin:10px'>
+                        <text id='version'>></text>
+                </view>
+        </view>
         <view class="row-wrap" bindtap="detailedInformation">
                 <view class='label'>使用说明 </view>
                 <view style='margin:10px'>

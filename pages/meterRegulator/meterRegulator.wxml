@@ -29,8 +29,8 @@
                         <loading hidden="{{hidden}}">
                                 加载中...
                         </loading>
-                        <button bindtap=" keepWeight">保持</button>
-                        <button bindtap="SaveValue">保存</button>
+                        <button bindtap="keepWeight">保持</button>
+                        <button bindtap="powerDrawer" data-statu="open">保存</button>
                 </view>
         </view>
 
@@ -41,5 +41,17 @@
                 <view>
                         <text class="business-companion-text">ShenZhen HuaShi Tech Co.，Ltd</text>
                 </view>
+        </view>
+
+</view>
+<view class="drawer_screen" bindtap="" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+        <view class="drawer_title">保存</view>
+        <view class="drawer_content">
+                <view class="top grid">
+                        <label class="title col-0">名称</label>
+                        <input class="input_base input_h30 col-1 input_font" bindchange="bindChange" placeholder="产品名称"></input>
+                </view>
+                <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
         </view>
 </view>

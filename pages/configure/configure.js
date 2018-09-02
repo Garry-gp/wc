@@ -1,10 +1,10 @@
 //设置页面
+var deviceIdKey = "1YKAMmiksKbbsAr5yRzmsQ==";
+var keepTheMinutesKey = "HJTLH1usZJGhPe4CyRV3JFyi/HyeCmUW";
 var deviceItems=[];
-
 var app = getApp(); 
 var temp = []
 var string_temp = ""
-var deviceIdKey = "sqqkSbLgXcY+naQ5+izLjQ=="
 Page({
         data:{
                 actionSheetHidden: true,
@@ -42,6 +42,9 @@ Page({
                         })
                 }  
         },
+        onShow() {
+                sessionStorage.setItem('aShow', true);
+        },
 
         //检查蓝牙的初始化状态
         open_BLE: function () {
@@ -61,6 +64,7 @@ Page({
                                 wx.showModal({
                                         title: '提示',
                                         content: '请检查手机蓝牙是否打开',
+                                        showCancel:false,
                                 })
                         }
                 })
@@ -110,7 +114,9 @@ Page({
 function checkBluetooth(that) {
         wx.startBluetoothDevicesDiscovery({
                 success: function (res) {
-                        getBluetoothList(that);
+                        setTimeout(function(){
+                                getBluetoothList(that);
+                        },2000);
                 }
         })
 };
@@ -122,9 +128,7 @@ function getBluetoothList(that) {
                         var string_temp=null;
                         var index = res.devices.length;
                         for (var i = 0; i < index; i++) {
-                                if (res.devices[i]) {
-                                        console.log("UUID:" + res.devices[i].advertisServiceUUIDs);
-                                        console.log("serviceData:" + ab2hex(res.devices[i].advertisData));
+                                if (res.devices[i].advertisServiceUUIDs.length>0) {
                                         string_temp = string_temp + '\n' + res.devices[i].deviceId;
                                 }
                         }
@@ -149,18 +153,14 @@ function stopBluetooth(that) {
                         })
                         console.log("关闭搜索设备！")
                 }
-        })
+        });
+        closeBluetoothAdapter();
 };
 
-/**
- * ArrayBuffer转16进度字符串
- */
-function ab2hex(buffer) {
-        var hexArr = Array.prototype.map.call(
-                new Uint8Array(buffer),
-                function (bit) {
-                        return ('00' + bit.toString(16)).slice(-2)
-                }
-        )
-        return hexArr.join('');
-};
+function closeBluetoothAdapter(){
+        wx.closeBluetoothAdapter({
+                success: function (res) { 
+                        console.log("关闭")
+                },
+        })
+}
