@@ -1,8 +1,8 @@
 {
   "pages":[
-    "pages/configure/configure",
     "pages/index/index",
     "pages/meterRegulator/meterRegulator",
+    "pages/configure/configure",
     "pages/keepTheMinutes/keepTheMinutes",
     "pages/particular/particular",
     "pages/user/user"

@@ -1,5 +1,21 @@
 <view class="particular-main">
         <view class='particular-title'>
                 <text>查看记录</text>
+                <button class='txt-button' bindtap='cleanMinuret'>清除</button>
         </view>
+</view>
+<view class="">
+        <block wx:for="{{arrayList}}" wx:key="string_temp">
+                <view class="" style="flex-direction:row">
+                        <view class="row-txt">
+                                <text class='txt-1'>{{item.name==''?'<未知>':item.name}}</text>
+                                <text class='txt-2'>{{item.totality==''?'--':item.totality}} $/kg</text>
+                                <view class='row-txt-1'>
+                                        <text class='txt-3'>{{item.price==''?'--':item.price}} ￥ </text>
+                                        <text class='txt-4'>{{item.weight==''?'--':item.weight}} kg </text>
+                                        <text class='txt-2'>{{item.dateTime==''?'--':item.dateTime}}</text>
+                                </view>
+                        </view>
+                </view>
+        </block>
 </view>

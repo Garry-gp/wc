@@ -223,9 +223,9 @@ Page({
                 var d = Util.formatTime(new Date());
                 var tempVales = wx.getStorageSync(keepTheMinutesKey);
                 if (tempVales){
-                        tempVales = tempVales + ",{name:'" + n + "',dataTime:'" + d+"',wight:'"+w+"',price:'"+p+"',total:'"+t+"'}";
+                        tempVales = tempVales + '^{"name":"' + n + '","dateTime":"' + d + '","weight":"' + w + '","price":"' + p + '","totality":"' + t +'"}';
                 } else{
-                        tempVales = "{name:'" + n + "',dataTime:'" + d+"',wight:'"+w+"',price:'"+p+"',total:'"+t+"'}";
+                        tempVales = '{"name":"' + n + '","dateTime":"' + d + '","weight":"' + w + '","price":"' + p + '","totality":"' + t +'"}';
                 }
                 try {
                         wx.setStorageSync(keepTheMinutesKey, tempVales)

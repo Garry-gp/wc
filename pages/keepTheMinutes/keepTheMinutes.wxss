@@ -10,5 +10,36 @@
         align-items: center;
         flex-direction: column;
         display: flex;
-        border-bottom: 1rpx solid #ededed;
+        border-bottom: 1rpx solid #21ab60;
+}
+
+.particular-title .txt-button{
+        margin: auto;
+        position: fixed;
+        right: 10px;
+        color: #21ab60;
+        height: 35px;
+        font-size: 16px;
+        align-items: center;
+        display: flex
+
+}
+.row-txt {
+        height: 50px;
+        margin: 5px;
+        border-bottom: 2rpx dashed;
+}
+.txt-1 {
+        margin: 15px;
+}
+.txt-3{
+        margin: 2px;
+}
+.txt-4{
+        margin: 2px;
+}
+.txt-2{
+        margin: 2px;
+        position: fixed;
+        right: 10px;
 }
