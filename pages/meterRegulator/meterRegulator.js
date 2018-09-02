@@ -3,6 +3,7 @@ var keepTheMinutesKey = "HJTLH1usZJGhPe4CyRV3JFyi/HyeCmUW";
 var Dec = require('../../public/public.js');
 var Util = require('../../utils/util.js');
 var searchAdertisTimer;
+var searchInitTimer;
 var currentMinutesName="";
 var num=0;
 Page({
@@ -29,14 +30,13 @@ Page({
                 hidden:true,
         },
         onLoad: function () {
+                // this.getStorageSyncDevice();
         },
         onShow:function(options) {
-                let self = this;
-                let aShow = JSON.parse(sessionStorage.getItem('aShow')) || '';
-                console.log("当前页面  "+aShow)
-                if (aShow) {
-                        //初始化蓝牙
-                        this.initBluetoothAdapter();   
+                var that = this;
+                that.getStorageSyncDevice();
+                if (that.data.deviceName!=null && searchInitTimer==null){
+                        initTimer(that);   
                 }
         },
         getStorageSyncDevice: function(){
@@ -60,37 +60,6 @@ Page({
                                 duration: 2000
                         })
                 };
-        },
-
-        /**
-         * 初始化蓝牙模块
-         */
-        initBluetoothAdapter: function () {
-                var that = this;
-                //获取手机蓝牙并初始化
-                this.getStorageSyncDevice();
-                wx.openBluetoothAdapter({
-                        success: function (res) {
-                                console.log('蓝牙初始化适配器，获取成功' + res);
-                                //获取本机蓝牙适配器状态
-                                wx.getBluetoothAdapterState({
-                                        success: function (res) {
-                                                console.log("设置available:" + res.available);
-                                                that.setData({
-                                                        available: res.available
-                                                });
-                                                getBluethootDevice(that);
-                                        }
-                                });
-                        },
-                        fail: function (res) {
-                                that.setData({
-                                        isInitSuccess:false
-                                });
-                                that.showInitFail();
-                        }
-                });
-                
         },
 
         showInitFail:function(){
@@ -168,15 +137,15 @@ Page({
          */
         powerDrawer: function (e) {
                 var that = this;
-                // var flag = that.data.isInitSuccess;
-                // if (!flag) {
-                //         that.showInitFail();
-                //         return;
-                // }
+                var flag = that.data.isInitSuccess;
+                if (!flag) {
+                        that.showInitFail();
+                        return;
+                }
                 var currentStatu = e.currentTarget.dataset.statu;
                 that.util(currentStatu);
         },
-        
+        //获取弹出框的INPUT值
         bindChange: function (e) {
                 currentMinutesName=e.detail.value;
         },
@@ -242,6 +211,9 @@ Page({
                 if (searchAdertisTimer!=null){ //关闭搜索设备定时器
                         searchAdertisTimer=clearInterval(searchAdertisTimer);
                 }
+                if (searchInitTimer != null) { //关闭搜索设备定时器
+                        searchInitTimer = clearInterval(searchInitTimer);
+                }
                 wx.navigateTo({
                         url: '/pages/configure/configure'
                 })
@@ -250,7 +222,42 @@ Page({
 
 //----------------------------------------------------------------
 
+function initTimer (that) {
+        searchInitTimer = setInterval(function () {
+                console.log("开启初始化定时器");
+                initBluetoothAdapter(that);
+        }, 1000);
+};
 
+/**
+ * 初始化蓝牙模块
+ */
+function initBluetoothAdapter (that) {
+        wx.openBluetoothAdapter({
+                success: function (res) {
+                        console.log('蓝牙初始化适配器，获取成功' + res);
+                        //获取本机蓝牙适配器状态
+                        wx.getBluetoothAdapterState({
+                                success: function (res) {
+                                        console.log("设置available:" + res.available);
+                                        that.setData({
+                                                available: res.available
+                                        });
+                                        if (searchInitTimer != null) {
+                                                searchInitTimer = clearInterval(searchInitTimer);
+                                        }
+                                        getBluethootDevice(that);
+                                }
+                        });
+                },
+                fail: function (res) {
+                        that.setData({
+                                isInitSuccess: false
+                        });
+                }
+        });
+
+};
 
 /**
  * 定时获取设备

@@ -43,7 +43,7 @@ Page({
                 }  
         },
         onShow() {
-                sessionStorage.setItem('aShow', true);
+
         },
 
         //检查蓝牙的初始化状态
