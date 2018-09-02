@@ -1,0 +1,5 @@
+<view class="particular-main">
+        <view class='particular-title'>
+                <text>查看记录</text>
+        </view>
+</view>
