@@ -1,9 +1,9 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/keepTheMinutes/keepTheMinutes",
-    "pages/meterRegulator/meterRegulator",
     "pages/configure/configure",
+    "pages/index/index",
+    "pages/meterRegulator/meterRegulator",
+    "pages/keepTheMinutes/keepTheMinutes",
     "pages/particular/particular",
     "pages/user/user"
   ],

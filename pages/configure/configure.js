@@ -3,8 +3,8 @@ var deviceIdKey = "1YKAMmiksKbbsAr5yRzmsQ==";
 var keepTheMinutesKey = "HJTLH1usZJGhPe4CyRV3JFyi/HyeCmUW";
 var deviceItems=[];
 var app = getApp(); 
-var temp = []
-var string_temp = ""
+var temp = [];
+var string_temp = "";
 Page({
         data:{
                 actionSheetHidden: true,
@@ -104,7 +104,12 @@ Page({
 
         detailedInformation: function(){
                 wx.navigateTo({
-                        url: '../particular/particular'
+                        url: '/pages/particular/particular'
+                })
+        },
+        checkMinutesInformation: function () {
+                wx.navigateTo({
+                        url: '/pages/keepTheMinutes/keepTheMinutes'
                 })
         }
 });
