@@ -1,13 +1,14 @@
 /*@import '../../utils/common.wxss';*/
 
-.particular-main{
+.particular-main {
         margin: 1px;
 }
-.particular-title{
+
+.particular-title {
         margin: 10px;
         padding: 3px;
         align-items: center;
         flex-direction: column;
         display: flex;
-        border-bottom:1rpx solid #ededed;
+        border-bottom: 1rpx solid #ededed;
 }
